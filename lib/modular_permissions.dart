@@ -2,13 +2,9 @@
 import 'package:flutter/services.dart';
 
 class ModularPermissions {
-  static const MethodChannel _channel = MethodChannel('modularPermissions');
   static const MethodChannel _channelLocation = MethodChannel('modularLocationPermissions');
   static const MethodChannel _channelContact = MethodChannel('modularContactPermissions');
 
-  static Future<void> generate() async {
-    _channel.invokeMethod("generate");
-  }
 
   static Future<ModularPermissionInfo> checkPermissionStatusByType(
       PermissionType type) async {
@@ -18,7 +14,7 @@ class ModularPermissions {
     try {
       final Map<dynamic, dynamic> requestInfo =
       await channel.invokeMethod(methodName);
-      return ModularPermissionInfo(requestInfo['granted'] ?? false, requestInfo['info'] ?? '');
+      return ModularPermissionInfo(requestInfo['granted'] ?? false, requestInfo['info'] ?? 'No information was provided.');
     } catch (err) {
       return ModularPermissionInfo(false,
           '$type request can not be handled. Do you have the correct permission module installed for $type?');
@@ -28,7 +24,6 @@ class ModularPermissions {
   static Future<ModularPermissionInfo> requestPermissionByType(PermissionType type) async {
     var methodName = 'request${getMethodNameFromType(type)}';
     var channel = getChannelFromType(type);
-    print('MethodName: $methodName');
     try {
       final Map<dynamic, dynamic> requestInfo =
       await channel.invokeMethod(methodName);
@@ -40,9 +35,9 @@ class ModularPermissions {
     }
   }
 
-  static Future<void> openAppSettings() async {
+  static Future<void> openAppSettingsByType(PermissionType type) async {
     try {
-      await _channel.invokeMethod('openAppSettings');
+      await getChannelFromType(type).invokeMethod('openAppSettings');
     } catch (err) {}
   }
 
