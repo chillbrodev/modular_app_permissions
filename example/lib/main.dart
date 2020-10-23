@@ -84,8 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               },
             ),
-            Text(
-                'Contact Permission is ${_contactPermissionStatus.granted ? 'granted' : 'not granted'} with info ${_contactPermissionStatus.info}'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                  'Contact Permission is ${_contactPermissionStatus.granted ? 'granted' : 'not granted'} with \n${_contactPermissionStatus.info}', textAlign: TextAlign.center) ,
+            ),
             OutlineButton(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0)),
@@ -128,8 +131,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               },
             ),
-            Text(
-                'Location Permission is ${_locationPermissionStatus.granted ? 'granted' : 'not granted'} with info ${_locationPermissionStatus.info}'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                  'Location Permission is ${_locationPermissionStatus.granted ? 'granted' : 'not granted'} with \n${_locationPermissionStatus.info}', textAlign: TextAlign.center,),
+            ),
             OutlineButton(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0)),
