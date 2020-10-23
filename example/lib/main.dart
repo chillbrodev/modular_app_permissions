@@ -130,6 +130,22 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
                 'Location Permission is ${_locationPermissionStatus.granted ? 'granted' : 'not granted'} with info ${_locationPermissionStatus.info}'),
+            OutlineButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4.0)),
+              borderSide: BorderSide(color: Colors.red),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Open App Settings',
+                  style: Theme.of(context).textTheme.button,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              onPressed: () async {
+                await ModularPermissions.openAppSettingsByType(PermissionType.LOCATION_ALWAYS);
+              },
+            ),
           ],
         ),
       ),
