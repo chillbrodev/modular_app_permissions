@@ -4,11 +4,11 @@ class ModularPermissions {
   static const MethodChannel _channelLocation =
       MethodChannel('ch.upte.modularLocationPermissions');
 
-  static const String UNKNOWN = "unknown";
-  static const String NOT_GRANTED = "not_granted";
-  static const String DENIED = "denied";
-  static const String RESTRICTED = "restricted";
-  static const String GRANTED = "granted";
+  static const String _UNKNOWN = "unknown";
+  static const String _NOT_GRANTED = "not_granted";
+  static const String _DENIED = "denied";
+  static const String _RESTRICTED = "restricted";
+  static const String _GRANTED = "granted";
 
   static Future<ModularPermissionInfo> checkPermissionStatus(
       PermissionRequest request) async {
@@ -88,19 +88,19 @@ class ModularPermissions {
   static ModularPermissionInfo _handleResultForLocationPermission(
       String result) {
     switch (result) {
-      case DENIED:
+      case _DENIED:
         return ModularPermissionInfo(
             false, "The Location permission request was denied.");
-      case RESTRICTED:
+      case _RESTRICTED:
         return ModularPermissionInfo(false,
             "The Location permission request was permanently denied or restricted.");
-      case GRANTED:
+      case _GRANTED:
         return ModularPermissionInfo(
             true, "The Location permission request was granted.");
-      case NOT_GRANTED:
+      case _NOT_GRANTED:
         return ModularPermissionInfo(
             false, "The Location permission is not granted");
-      case UNKNOWN:
+      case _UNKNOWN:
       default:
         return ModularPermissionInfo(
             false, "Unable to determine status of Location permission request");
