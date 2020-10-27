@@ -16,10 +16,6 @@ dependencies:
     git:
       url: https://github.com/chillbrodev/modular_location_permission.git
 
-  modular_contact_permission:
-    git:
-      url: https://github.com/chillbrodev/modular_contact_permission.git
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

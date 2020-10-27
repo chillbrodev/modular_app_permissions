@@ -29,8 +29,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  ModularPermissionInfo _contactPermissionStatus =
-      ModularPermissionInfo(false, 'Unknown');
   ModularPermissionInfo _locationPermissionStatus =
       ModularPermissionInfo(false, 'Unknown');
 
@@ -51,60 +49,14 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Check Contact Permission',
-                  style: Theme.of(context).textTheme.button,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              onPressed: () async {
-                final info = await ModularPermissions.checkPermissionStatusByType(
-                    PermissionType.WRITE_CONTACTS);
-                setState(() {
-                  _contactPermissionStatus = info;
-                });
-              },
-            ),
-            OutlineButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0)),
-              borderSide: BorderSide(color: Colors.red),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Request Contact Permission',
-                  style: Theme.of(context).textTheme.button,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              onPressed: () async {
-                final info = await ModularPermissions.requestPermissionByType(
-                        PermissionType.WRITE_CONTACTS);
-                setState(() {
-                  _contactPermissionStatus = info;
-                });
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                  'Contact Permission is ${_contactPermissionStatus.granted ? 'granted' : 'not granted'} with \n${_contactPermissionStatus.info}', textAlign: TextAlign.center) ,
-            ),
-            OutlineButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0)),
-              borderSide: BorderSide(color: Colors.red),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
                   'Check Location Permission',
                   style: Theme.of(context).textTheme.button,
                   textAlign: TextAlign.center,
                 ),
               ),
               onPressed: () async {
-
-                final info = await ModularPermissions.checkPermissionStatusByType(
-                    PermissionType.LOCATION_ALWAYS);
+                final info = await ModularPermissions.checkPermissionStatus(
+                    LocationWhenInUsePermissionRequest());
                 setState(() {
                   _locationPermissionStatus = info;
                 });
@@ -123,9 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               onPressed: () async {
-
-                final info = await ModularPermissions.requestPermissionByType(
-                    PermissionType.LOCATION_ALWAYS);
+                final info = await ModularPermissions.requestPermission(
+                    LocationWhenInUsePermissionRequest());
                 setState(() {
                   _locationPermissionStatus = info;
                 });
@@ -134,7 +85,9 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                  'Location Permission is ${_locationPermissionStatus.granted ? 'granted' : 'not granted'} with \n${_locationPermissionStatus.info}', textAlign: TextAlign.center,),
+                'Location Permission is ${_locationPermissionStatus.granted ? 'granted' : 'not granted'} with \n${_locationPermissionStatus.info}',
+                textAlign: TextAlign.center,
+              ),
             ),
             OutlineButton(
               shape: RoundedRectangleBorder(
@@ -149,7 +102,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               onPressed: () async {
-                await ModularPermissions.openAppSettingsByType(PermissionType.LOCATION_ALWAYS);
+                await ModularPermissions.openAppSettings(
+                    LocationWhenInUsePermissionRequest());
               },
             ),
           ],
