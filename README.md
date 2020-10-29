@@ -12,7 +12,7 @@ permission.
 
 For example:
     - A developer needs the Location permission so they include this plugin as well as
-    the plugin [modular_location_permissions](). To check to see if the permissions is granted, The
+    the plugin [modular_location_permissions](https://pub.dev/packages/modular_location_permission). To check to see if the permissions is granted, The
     developer can call `checkPermissionStatus` with a `LocationAlwaysPermissionRequest` or a 
     `LocationWhenInUsePermissionRequest`. Similarly to request the permission the developer just calls
     `requestPermission` with one of the above PermissionRequests and the plugin will request the Location
@@ -22,6 +22,9 @@ This approach allows the developer to have confidence that they are only includi
 location permission and no other permissions. 
 
 ## Functionality
+NOTE: If the requested permission module is not installed correctly, you will see a *MissingPluginException* in the logs:
+Example: `MissingPluginException(No implementation found for method checkLocationPermission on channel ch.upte.modularLocationPermissions)`
+
 - checkPermissionStatus(PermissionRequest request): 
 Checks the status of the permission request by returning an object called ModularPermissionInfo which
 includes whether or not the permission was granted and any additional information.

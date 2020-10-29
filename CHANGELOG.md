@@ -1,3 +1,4 @@
-## 0.0.1
+## 0.1.0
 
-* TODO: Describe initial release.
+* Initial Release
+* Allow developers to request permissions, check permission status or open settings  
