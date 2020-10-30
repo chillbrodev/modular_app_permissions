@@ -1,6 +1,7 @@
 # modular_permissions
 
 Modular permission plugin to request native (Android, iOS) permissions. Checkout the example to get started.
+If you are interested in contributing, checkout the CONTRIBUTION.md.
 
 ## Plugin Info
 
