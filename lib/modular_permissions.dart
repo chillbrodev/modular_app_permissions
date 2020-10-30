@@ -76,35 +76,34 @@ class ModularPermissions {
 
   static ModularPermissionInfo _permissionInfoFromType(
       PermissionType type, String result) {
+    String permissionName = '';
     switch (type) {
       case PermissionType.LOCATION_ALWAYS:
       case PermissionType.LOCATION_WHEN_IN_USE:
-        return _handleResultForLocationPermission(result);
+        permissionName = 'Location';
         break;
-      default:
-        return null;
     }
+    return _handleResultForPermission(permissionName, result);
   }
 
-  static ModularPermissionInfo _handleResultForLocationPermission(
-      String result) {
+  static ModularPermissionInfo _handleResultForPermission(String permissionName, String result) {
     switch (result) {
       case _DENIED:
         return ModularPermissionInfo(
-            false, "The Location permission request was denied.");
+            false, "The $permissionName permission request was denied.");
       case _RESTRICTED:
         return ModularPermissionInfo(false,
-            "The Location permission request was permanently denied or restricted.");
+            "The $permissionName permission request was permanently denied or restricted.");
       case _GRANTED:
         return ModularPermissionInfo(
-            true, "The Location permission request was granted.");
+            true, "The $permissionName permission request was granted.");
       case _NOT_GRANTED:
         return ModularPermissionInfo(
-            false, "The Location permission is not granted");
+            false, "The $permissionName permission is not granted");
       case _UNKNOWN:
       default:
         return ModularPermissionInfo(
-            false, "Unable to determine status of Location permission request");
+            false, "Unable to determine status of $permissionName permission request");
     }
   }
 
