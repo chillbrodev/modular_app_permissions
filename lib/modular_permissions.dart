@@ -4,6 +4,9 @@ class ModularPermissions {
   static const MethodChannel _channelLocation =
       MethodChannel('ch.upte.modularLocationPermissions');
 
+  static const MethodChannel _channelSelf =
+      MethodChannel('ch.upte.modular_permissions');
+
   static const String _UNKNOWN = "unknown";
   static const String _NOT_GRANTED = "not_granted";
   static const String _DENIED = "denied";
@@ -41,13 +44,11 @@ class ModularPermissions {
     }
   }
 
-  static Future<void> openAppSettings(
-      PermissionRequest permissionRequest) async {
+  static Future<void> openAppSettings() async {
     try {
       //On iOS this will open root settings. Limitation of iOS
       //On Android this will open the specific app's settings page.
-      await _getChannelFromType(permissionRequest.permissionType)
-          .invokeMethod('openAppSettings');
+      await _channelSelf.invokeMethod('openAppSettings');
     } catch (err) {}
   }
 

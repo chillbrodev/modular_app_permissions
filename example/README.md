@@ -34,7 +34,7 @@ Requests the specified permission and handles the native logic in order to facil
 the user. Returns an object called ModularPermissionInfo which includes whether or not the permission
 was granted and any additional information.
 
-- openAppSettings(PermissionRequest permissionRequest): 
+- openAppSettings(): 
 This opens up the app's settings page
 
 ## Supported Permissions
@@ -59,3 +59,11 @@ app to be rejected from the App Store or list a multitude of un-used permissions
 user about your app's intent. Flutter is designed to abstract away the details of the native platforms 
 and empower developers with a solution for to deploy to multiple platforms with ease. The plugins 
 that we developers use, should have that same design. Which is why we developed this Modular Permissions Plugin.
+
+## About <img src="http://upte.ch/img/logo.png" width="180">
+
+`modular_permissions` is maintained and funded by [UpTech Works, LLC][uptech], a
+software product, design & development consultancy.
+
+We love open source software. See [our other projects][community] or
+[hire us][hire] to design, develop, and grow your product.

@@ -102,8 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               onPressed: () async {
-                await ModularPermissions.openAppSettings(
-                    LocationWhenInUsePermissionRequest());
+                await ModularPermissions.openAppSettings();
               },
             ),
           ],
