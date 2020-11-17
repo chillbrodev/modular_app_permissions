@@ -12,7 +12,7 @@ permission.
 
 For example:
     - A developer needs the Location permission so they include this plugin as well as
-    the plugin [modular_location_permissions](https://pub.dev/packages/modular_location_permission). To check to see if the permissions is granted, The
+    the plugin [modular_permission_location](https://pub.dev/packages/modular_permission_location). To check to see if the permissions is granted, The
     developer can call `checkPermissionStatus` with a `LocationAlwaysPermissionRequest` or a 
     `LocationWhenInUsePermissionRequest`. Similarly to request the permission the developer just calls
     `requestPermission` with one of the above PermissionRequests and the plugin will request the Location
@@ -35,7 +35,7 @@ the user. Returns an object called ModularPermissionInfo which includes whether 
 was granted and any additional information.
 
 - openAppSettings(): 
-This opens up the app's settings page
+This opens up the app's settings page.
 
 ## Supported Permissions
 - Location:
@@ -62,8 +62,8 @@ that we developers use, should have that same design. Which is why we developed 
 
 ## About <img src="http://upte.ch/img/logo.png" width="180">
 
-`modular_permissions` is maintained and funded by [UpTech Works, LLC][uptech], a
+`modular_permissions` is maintained and funded by [UpTech Works, LLC](https://upte.ch/), a
 software product, design & development consultancy.
 
-We love open source software. See [our other projects][community] or
-[hire us][hire] to design, develop, and grow your product.
+We love open source software. See [our other projects](https://github.com/uptech) or
+[hire us](https://upte.ch/) to design, develop, and grow your product.

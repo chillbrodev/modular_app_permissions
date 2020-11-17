@@ -2,7 +2,10 @@ import 'package:flutter/services.dart';
 
 class ModularPermissions {
   static const MethodChannel _channelLocation =
-      MethodChannel('ch.upte.modularLocationPermissions');
+      MethodChannel('ch.upte.modularPermissionsLocation');
+
+  static const MethodChannel _channelMicrophone =
+      MethodChannel('ch.upte.modularPermissionsMicrophone');
 
   static const MethodChannel _channelSelf =
       MethodChannel('ch.upte.modular_permissions');
@@ -21,8 +24,7 @@ class ModularPermissions {
     try {
       //Arguments are ignored in Android
       //Arguments are used in iOS only for Location
-      final String result = await channel
-          .invokeMethod(methodName, {'permissionArgs': request.arguments});
+      final String result = await channel.invokeMethod(methodName, {'permissionArgs': request.arguments});
       return _permissionInfoFromType(request.permissionType, result);
     } catch (err) {
       return _handleError(err, request);
@@ -59,6 +61,9 @@ class ModularPermissions {
       case PermissionType.LOCATION_WHEN_IN_USE:
         methodName = "LocationPermission";
         break;
+      case PermissionType.USE_MICROPHONE:
+        methodName = "MicrophonePermission";
+        break;
     }
     return methodName;
   }
@@ -69,6 +74,8 @@ class ModularPermissions {
       case PermissionType.LOCATION_WHEN_IN_USE:
         return _channelLocation;
         break;
+      case PermissionType.USE_MICROPHONE:
+        return _channelMicrophone;
       default:
         return null;
     }
@@ -82,11 +89,15 @@ class ModularPermissions {
       case PermissionType.LOCATION_WHEN_IN_USE:
         permissionName = 'Location';
         break;
+      case PermissionType.USE_MICROPHONE:
+        permissionName = 'Microphone';
+        break;
     }
     return _handleResultForPermission(permissionName, result);
   }
 
-  static ModularPermissionInfo _handleResultForPermission(String permissionName, String result) {
+  static ModularPermissionInfo _handleResultForPermission(
+      String permissionName, String result) {
     switch (result) {
       case _DENIED:
         return ModularPermissionInfo(
@@ -102,8 +113,8 @@ class ModularPermissions {
             false, "The $permissionName permission is not granted");
       case _UNKNOWN:
       default:
-        return ModularPermissionInfo(
-            false, "Unable to determine status of $permissionName permission request");
+        return ModularPermissionInfo(false,
+            "Unable to determine status of $permissionName permission request");
     }
   }
 
@@ -134,7 +145,8 @@ abstract class PermissionRequest {
 
 enum PermissionType {
   LOCATION_ALWAYS, //Android = FINE_LOCATION
-  LOCATION_WHEN_IN_USE, //Android = FINE_LOCATION
+  LOCATION_WHEN_IN_USE, // Android = FINE_LOCATION
+  USE_MICROPHONE
 }
 
 class LocationAlwaysPermissionRequest extends PermissionRequest {
@@ -151,4 +163,12 @@ class LocationWhenInUsePermissionRequest extends PermissionRequest {
 
   @override
   String get arguments => "LocationWhenInUse";
+}
+
+class UseMicrophonePermissionRequest extends PermissionRequest {
+  @override
+  PermissionType get permissionType => PermissionType.USE_MICROPHONE;
+
+  @override
+  String get arguments => '';
 }

@@ -1,4 +1,9 @@
 ## 0.1.0
 
 * Initial Release
-* Allow developers to request permissions, check permission status or open settings  
+* Allow developers to request permissions, check permission status or open settings
+
+## 0.2.0
+* Move openAppSettings out of the sub plugins and into the main Modular App Permissions Plugin.
+* Add support for modular_permission_microphone plugin.
+* Add support for modular_permission_location plugin. 

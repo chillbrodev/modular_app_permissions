@@ -49,14 +49,14 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Check Location Permission',
+                  'Check Microphone Permission',
                   style: Theme.of(context).textTheme.button,
                   textAlign: TextAlign.center,
                 ),
               ),
               onPressed: () async {
                 final info = await ModularPermissions.checkPermissionStatus(
-                    LocationWhenInUsePermissionRequest());
+                    UseMicrophonePermissionRequest());
                 setState(() {
                   _locationPermissionStatus = info;
                 });
@@ -69,14 +69,14 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Request Location Permission',
+                  'Request Microphone Permission',
                   style: Theme.of(context).textTheme.button,
                   textAlign: TextAlign.center,
                 ),
               ),
               onPressed: () async {
                 final info = await ModularPermissions.requestPermission(
-                    LocationWhenInUsePermissionRequest());
+                    UseMicrophonePermissionRequest());
                 setState(() {
                   _locationPermissionStatus = info;
                 });
@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Location Permission is ${_locationPermissionStatus.granted ? 'granted' : 'not granted'} with \n${_locationPermissionStatus.info}',
+                'Microphone Permission is ${_locationPermissionStatus.granted ? 'granted' : 'not granted'} with \n${_locationPermissionStatus.info}',
                 textAlign: TextAlign.center,
               ),
             ),

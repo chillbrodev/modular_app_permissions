@@ -12,7 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  modular_location_permission: 0.1.0
+  modular_permission_location: 0.1.0
+  modular_permission_microphone: 0.1.1
 
   modular_permissions:
     # When depending on this package from a real application you should use:
