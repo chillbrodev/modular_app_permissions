@@ -10,3 +10,6 @@
 
 ## 0.3.0
 * Add support for modular_permission_contact plugin.
+
+## 0.3.1
+* Update README with Contact support information.
