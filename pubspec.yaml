@@ -1,6 +1,6 @@
 name: modular_permissions
 description: Modular permission plugin to request native permissions
-version: 0.2.0
+version: 0.3.0
 homepage: https://upte.ch
 repository: https://github.com/uptech/modular_app_permissions
 issue_tracker: https://github.com/uptech/modular_app_permissions/issues
