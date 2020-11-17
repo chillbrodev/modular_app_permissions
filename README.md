@@ -38,13 +38,16 @@ was granted and any additional information.
 This opens up the app's settings page.
 
 ## Supported Permissions
-- Location:
+- [Location](https://pub.dev/packages/modular_permission_location):
     - Android: Access Fine Location
     - iOS: When in use or Always
-- Microphone:
+- [Microphone](https://pub.dev/packages/modular_permission_microphone):
     - Android: Record Audio
     - iOS: Not Supported
-    
+- [Contact](https://pub.dev/packages/modular_permission_contact):
+    - Android: Read Contact
+    - iOS: Not Supported   
+     
 - Additional permission support is in development
 
 ## Permission Information
