@@ -7,6 +7,9 @@ class ModularPermissions {
   static const MethodChannel _channelMicrophone =
       MethodChannel('ch.upte.modularPermissionsMicrophone');
 
+  static const MethodChannel _channelContact =
+      MethodChannel('ch.upte.modularPermissionsContact');
+
   static const MethodChannel _channelSelf =
       MethodChannel('ch.upte.modular_permissions');
 
@@ -24,7 +27,8 @@ class ModularPermissions {
     try {
       //Arguments are ignored in Android
       //Arguments are used in iOS only for Location
-      final String result = await channel.invokeMethod(methodName, {'permissionArgs': request.arguments});
+      final String result = await channel
+          .invokeMethod(methodName, {'permissionArgs': request.arguments});
       return _permissionInfoFromType(request.permissionType, result);
     } catch (err) {
       return _handleError(err, request);
@@ -64,6 +68,8 @@ class ModularPermissions {
       case PermissionType.USE_MICROPHONE:
         methodName = "MicrophonePermission";
         break;
+      case PermissionType.CONTACTS:
+        methodName = 'ContactPermission';
     }
     return methodName;
   }
@@ -76,6 +82,8 @@ class ModularPermissions {
         break;
       case PermissionType.USE_MICROPHONE:
         return _channelMicrophone;
+      case PermissionType.CONTACTS:
+        return _channelContact;
       default:
         return null;
     }
@@ -92,6 +100,8 @@ class ModularPermissions {
       case PermissionType.USE_MICROPHONE:
         permissionName = 'Microphone';
         break;
+      case PermissionType.CONTACTS:
+        permissionName = 'Contact';
     }
     return _handleResultForPermission(permissionName, result);
   }
@@ -146,7 +156,30 @@ abstract class PermissionRequest {
 enum PermissionType {
   LOCATION_ALWAYS, //Android = FINE_LOCATION
   LOCATION_WHEN_IN_USE, // Android = FINE_LOCATION
-  USE_MICROPHONE
+  USE_MICROPHONE,
+  CONTACTS
+}
+
+extension PermissionTypeName on PermissionType {
+  String get name {
+    switch (this) {
+      case PermissionType.LOCATION_ALWAYS:
+        return 'Location';
+        break;
+      case PermissionType.LOCATION_WHEN_IN_USE:
+        return 'Location';
+        break;
+      case PermissionType.USE_MICROPHONE:
+        return 'Microphone';
+        break;
+      case PermissionType.CONTACTS:
+        return 'Contact';
+        break;
+      default:
+        return 'unknown';
+        break;
+    }
+  }
 }
 
 class LocationAlwaysPermissionRequest extends PermissionRequest {
@@ -168,6 +201,14 @@ class LocationWhenInUsePermissionRequest extends PermissionRequest {
 class UseMicrophonePermissionRequest extends PermissionRequest {
   @override
   PermissionType get permissionType => PermissionType.USE_MICROPHONE;
+
+  @override
+  String get arguments => '';
+}
+
+class ContactsPermissionRequest extends PermissionRequest {
+  @override
+  PermissionType get permissionType => PermissionType.CONTACTS;
 
   @override
   String get arguments => '';

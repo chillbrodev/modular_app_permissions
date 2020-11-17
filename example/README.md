@@ -11,12 +11,12 @@ include this plugin as the core entry point then include the sub module plugins 
 permission. 
 
 For example:
-    - A developer needs the Location permission so they include this plugin as well as
-    the plugin [modular_permission_location](https://pub.dev/packages/modular_permission_location). To check to see if the permissions is granted, The
-    developer can call `checkPermissionStatus` with a `LocationAlwaysPermissionRequest` or a 
-    `LocationWhenInUsePermissionRequest`. Similarly to request the permission the developer just calls
-    `requestPermission` with one of the above PermissionRequests and the plugin will request the Location
-    Permission. 
+    - A developer needs the location permission so they include this plugin as well as
+    the plugin [modular_permission_location](https://pub.dev/packages/modular_permission_location).
+    To check to see if the permissions is granted, The developer can call `checkPermissionStatus`
+    with a `LocationAlwaysPermissionRequest` or a `LocationWhenInUsePermissionRequest`. 
+    Similarly to request the permission the developer just calls `requestPermission` with one of 
+    the above PermissionRequests and the plugin will request the Location Permission. 
 
 This approach allows the developer to have confidence that they are only including logic for the
 location permission and no other permissions. 
@@ -41,6 +41,9 @@ This opens up the app's settings page.
 - Location:
     - Android: Access Fine Location
     - iOS: When in use or Always
+- Microphone:
+    - Android: Record Audio
+    - iOS: Not Supported
     
 - Additional permission support is in development
 
@@ -60,7 +63,7 @@ user about your app's intent. Flutter is designed to abstract away the details o
 and empower developers with a solution for to deploy to multiple platforms with ease. The plugins 
 that we developers use, should have that same design. Which is why we developed this Modular Permissions Plugin.
 
-## About <img src="http://upte.ch/img/logo.png" width="180">
+## About <img src="https://upte.ch/img/logo.png" width="180">
 
 `modular_permissions` is maintained and funded by [UpTech Works, LLC](https://upte.ch/), a
 software product, design & development consultancy.

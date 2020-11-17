@@ -7,3 +7,6 @@
 * Move openAppSettings out of the sub plugins and into the main Modular App Permissions Plugin.
 * Add support for modular_permission_microphone plugin.
 * Add support for modular_permission_location plugin. 
+
+## 0.3.0
+* Add support for modular_permission_contact plugin.
