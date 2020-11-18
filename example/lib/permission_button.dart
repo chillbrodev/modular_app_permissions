@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:modular_permissions/modular_permissions.dart';
 import 'package:modular_permissions_example/permission_page.dart';
+import 'package:modular_permissions_example/read_write_permission_page.dart';
 
 class PermissionButton extends StatelessWidget {
   final String buttonText;
   final PermissionType permissionType;
   final PermissionRequest permissionRequest;
 
+  final bool hasWritePermissions;
+  final PermissionType writePermissionType;
+  final PermissionRequest writePermissionRequest;
+
   PermissionButton(
       {@required this.buttonText,
       @required this.permissionType,
-      @required this.permissionRequest})
+      @required this.permissionRequest,
+      bool hasWritePermissions,
+      this.writePermissionType,
+      this.writePermissionRequest})
       : assert(buttonText != null),
         assert(permissionType != null),
-        assert(permissionRequest != null);
+        assert(permissionRequest != null),
+        hasWritePermissions = hasWritePermissions ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +44,23 @@ class PermissionButton extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PermissionPage(
-                          title: buttonText,
-                          permissionType: permissionType,
-                          permissionRequest: permissionRequest,
-                        )));
+                if (hasWritePermissions) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ReadWritePermissionPage(
+                            title: buttonText,
+                            readPermissionType: permissionType,
+                            readPermissionRequest: permissionRequest,
+                            writePermissionRequest: writePermissionRequest,
+                            writePermissionType: writePermissionType,
+                          )));
+                } else {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => PermissionPage(
+                            title: buttonText,
+                            permissionType: permissionType,
+                            permissionRequest: permissionRequest,
+                          )));
+                }
               },
             ),
           ),

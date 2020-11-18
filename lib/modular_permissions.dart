@@ -70,6 +70,10 @@ class ModularPermissions {
         break;
       case PermissionType.CONTACTS:
         methodName = 'ContactPermission';
+        break;
+      case PermissionType.WRITE_CONTACTS:
+        methodName = 'WriteContactPermission';
+        break;
     }
     return methodName;
   }
@@ -82,6 +86,7 @@ class ModularPermissions {
         break;
       case PermissionType.USE_MICROPHONE:
         return _channelMicrophone;
+      case PermissionType.WRITE_CONTACTS:
       case PermissionType.CONTACTS:
         return _channelContact;
       default:
@@ -100,6 +105,7 @@ class ModularPermissions {
       case PermissionType.USE_MICROPHONE:
         permissionName = 'Microphone';
         break;
+      case PermissionType.WRITE_CONTACTS:
       case PermissionType.CONTACTS:
         permissionName = 'Contact';
     }
@@ -157,21 +163,21 @@ enum PermissionType {
   LOCATION_ALWAYS, //Android = FINE_LOCATION
   LOCATION_WHEN_IN_USE, // Android = FINE_LOCATION
   USE_MICROPHONE,
-  CONTACTS
+  CONTACTS,
+  WRITE_CONTACTS
 }
 
 extension PermissionTypeName on PermissionType {
   String get name {
     switch (this) {
       case PermissionType.LOCATION_ALWAYS:
-        return 'Location';
-        break;
       case PermissionType.LOCATION_WHEN_IN_USE:
         return 'Location';
         break;
       case PermissionType.USE_MICROPHONE:
         return 'Microphone';
         break;
+      case PermissionType.WRITE_CONTACTS:
       case PermissionType.CONTACTS:
         return 'Contact';
         break;
@@ -209,6 +215,14 @@ class UseMicrophonePermissionRequest extends PermissionRequest {
 class ContactsPermissionRequest extends PermissionRequest {
   @override
   PermissionType get permissionType => PermissionType.CONTACTS;
+
+  @override
+  String get arguments => '';
+}
+
+class WriteContactsPermissionRequest extends PermissionRequest {
+  @override
+  PermissionType get permissionType => PermissionType.WRITE_CONTACTS;
 
   @override
   String get arguments => '';
