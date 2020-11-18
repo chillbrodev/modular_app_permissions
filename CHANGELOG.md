@@ -13,3 +13,6 @@
 
 ## 0.3.1
 * Update README with Contact support information.
+
+## 0.3.2
+* Update to support new write permissions from Modular Contact.
